@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import TableCell from '@mui/material/TableCell';
 
 import Checkbox from '@mui/material/Checkbox';
+import '../../index'
 
 
 function NotActive(props: any) {
@@ -10,21 +11,10 @@ function NotActive(props: any) {
 
 
 
+    
+    
 
-    const [checked, setChecked] = useState(false)
-
-    const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        if (!checked) {
-            props.player.active = true
-        } if (checked) {
-            props.player.active = false
-        }
-
-        setChecked(e.target.checked)
-
-    }
-
+ 
    
 
     
@@ -36,13 +26,9 @@ function NotActive(props: any) {
            
 
             <TableCell size="small" align="center" sx={{ border: 1 }}>
-            <Checkbox
-                checked={checked}
-                onChange={handleCheck}
-                inputProps={{ 'aria-label': 'controlled', }} />
-                <p>Not Active</p>
+    
+                <button className="inactive-btn" onClick={()=> props.player.active = true}> Sub In</button>
                 
-
             </TableCell>
 
             <TableCell size="small" align="center" sx={{ border: 1 }}>

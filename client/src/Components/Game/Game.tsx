@@ -8,7 +8,9 @@ import TableRow from '@mui/material/TableRow';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import Home from '../Home';
 import Away from '../Away';
+import Inactive from '../Team/Inactive';
 import NotActive from '../Player/NotActive';
+import '../../index'
 
 
 
@@ -17,75 +19,6 @@ import NotActive from '../Player/NotActive';
 type Stat = "points" | "rebounds" | "steals" | "FT" | "2P" | "3P" | "Miss 3P" | "Miss 2P" | "Miss FT" | "assist" | "block" | "fouls" | "active"
 
 
-// const createPlayer = ({ idx, players, setPlayers, userInput, team }) => {
-//     return {
-//         id: idx,
-//         team: team,
-//         active: null,
-//         name: userInput,
-//         fg: [0, "-", 0],
-//         fgPercent: 0,
-//         threePt: [0.0, "-", 0.0,],
-//         threePercent: 0,
-//         ft: [0, "-", 0],
-//         rebounds: 0,
-//         assists: 0,
-//         blocks: 0,
-//         steals: 0,
-//         fouls: 0,
-//         points: 0,
-//         full: null,
-//         updatePlayer: (stat: Stat) => {
-//             const player = players.find((player) => player.id === idx)
-//             // update player depending on the stat increment
-
-
-//             if (player && player["active"] === true ||  homeActive ) {
-
-//                 if (stat === "full") {
-//                     return null
-//                 }
-
-//                 if (stat === "FT") {
-//                     player["points"] += 1
-//                     player["ft"][0] += 1
-//                     player["ft"][2] += 1
-//                     player["fgPercent"] = Math.floor(player["fg"][0] / player["fg"][2] * 100)
-
-//                 } else if (stat === "2P") {
-//                     player["points"] += 2
-//                     player["fg"][0] += 1
-//                     player["fg"][2] += 1
-//                     player["fgPercent"] = Math.floor(player["fg"][0] / player["fg"][2] * 100)
-
-//                 } else if (stat === "3P") {
-//                     player["points"] += 3
-//                     player["threePt"][0] += 1
-//                     player["threePt"][2] += 1
-//                     player["fgPercent"] = Math.floor(player["fg"][0] / player["fg"][2] * 100)
-//                     player["threePercent"] = Math.floor(player["threePt"][0] / player["threePt"][2] * 100)
-
-//                 } else if (stat === "Miss FT") {
-//                     player["ft"][2] += 1
-
-//                 } else if (stat === "Miss 2P") {
-//                     player["fg"][2] += 1
-//                     player["fgPercent"] = Math.floor(player["fg"][0] / player["fg"][2] * 100)
-
-//                 } else if (stat === "Miss 3P") {
-//                     player["threePt"][2] += 1
-//                     player["fgPercent"] = Math.floor(player["fg"][0] / player["fg"][2] * 100)
-//                     player["threePercent"] = Math.floor(player["threePt"][0] / player["threePt"][2] * 100)
-//                 }
-//                 else {
-//                     player[stat] = player[stat] += 1
-//                 }
-//             }
-//             setPlayers([...players])
-//         },
-
-//     }
-// }
 
 function Game() {
 
@@ -261,26 +194,14 @@ function Game() {
     }
 
 
-
+    
     const homeActive: any[] = []
     const awayActive: any[] = []
+    const inactive:  any [] = []
 
-
-
-
+        
     return (
         <>
-            <ToggleButtonGroup
-                color="primary"
-                value={teamView}
-                exclusive
-                onChange={toggleView}
-                aria-label="Platform"
-            >
-
-                <ToggleButton value="home">Home</ToggleButton>
-                <ToggleButton value="away">Away</ToggleButton>
-            </ToggleButtonGroup>
 
 
 
@@ -306,34 +227,45 @@ function Game() {
 
             <h2>Home:{homeScore()}</h2>
             <h2>Away:{awayScore()}</h2>
+            <ToggleButtonGroup
+                color="primary"
+                value={teamView}
+                exclusive
+                onChange={toggleView}
+                aria-label="Platform"
+            >
+
+                <ToggleButton value="home">Home</ToggleButton>
+                <ToggleButton value="away">Away</ToggleButton>
+            </ToggleButtonGroup>
+
 
             <TableContainer>
-                <Table sx={{ minWidth: 650, border: 1 }}>
+                <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center" sx={{ border: 1 }}>Active</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>Name</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>FG</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>FG%</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>3PT</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>3P%</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>FT</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>REB</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>AST</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>BLK</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>STL</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>Fouls</TableCell>
-                            <TableCell align="center" sx={{ border: 1 }}>PTS</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Active</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Name</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FG</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FG%</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>3PT</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>3P%</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FT</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>REB</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>AST</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>BLK</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>STL</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Fouls</TableCell>
+                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>PTS</TableCell>
 
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {players.map((player) => {
-                            
 
+                           
 
-
-                            if (teamView === "home") {
+                            if (teamView === "home" ) {
                                 return (
                                     <Home player={player} key={player.id} />
                                 )
