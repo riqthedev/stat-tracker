@@ -16,6 +16,7 @@ import '../../index'
 
 
 
+
 type Stat = "points" | "rebounds" | "steals" | "FT" | "2P" | "3P" | "Miss 3P" | "Miss 2P" | "Miss FT" | "assist" | "block" | "fouls" | "active"
 
 
@@ -124,8 +125,8 @@ function Game() {
         const idx = players.length
         setUserInput(userInput)
         setTeam(team)
-        const newPlayer = createPlayer({ idx, players, setPlayers, userInput, team })
-        players.push(newPlayer);
+        const createdPlayer = createPlayer({ idx, players, setPlayers, userInput, team })
+        players.push(createdPlayer);
         setUserInput("")
     }
 
@@ -287,3 +288,5 @@ function Game() {
 }
 
 export default Game
+
+
