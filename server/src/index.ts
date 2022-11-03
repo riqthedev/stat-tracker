@@ -23,3 +23,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`)
 })
 
+app.get("/help", (req,res) => {
+  res.send("Help")
+})
+
