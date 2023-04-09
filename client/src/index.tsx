@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import CreateGame from './Components/Forms/CreateTeam';
 
 
 
 
 
 const router = createBrowserRouter([{
-  path:"/",
-  element: <App/>,
+  path:"/stat-tracker",
+  element: <CreateGame/>,
 },
 ]);
 

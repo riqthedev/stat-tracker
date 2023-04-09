@@ -4,14 +4,14 @@ import TableCell from '@mui/material/TableCell';
 
 import Checkbox from '@mui/material/Checkbox';
 
-
+export function SubOut (props:any) {
+    return (
+        <button className="active-btn" onClick={()=> props.player.active = false}> Sub Out</button>
+    )
+}
 
 
 function Player(props: any) {
-
-
-
-
 
 
    
@@ -26,7 +26,7 @@ function Player(props: any) {
 
             <TableCell size="small" align="center" sx={{ border: 1}}>
             
-            <button className="active-btn" onClick={()=> props.player.active = false}> Sub Out</button>
+                <SubOut/>
                 
             </TableCell>
 

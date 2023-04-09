@@ -6,6 +6,16 @@ import Checkbox from '@mui/material/Checkbox';
 import '../../index'
 
 
+
+
+
+export function SubIn (props:any) {
+    return (
+        <button className="inactive-btn" onClick={()=> props.player.active = true}> Sub In</button>
+    )
+}
+
+
 function NotActive(props: any) {
 
 
@@ -27,7 +37,7 @@ function NotActive(props: any) {
 
             <TableCell size="small" align="center" sx={{ border: 1 }}>
     
-                <button className="inactive-btn" onClick={()=> props.player.active = true}> Sub In</button>
+                <SubIn/>
                 
             </TableCell>
 
