@@ -5,25 +5,45 @@ import { Button, Card, CardContent, CardHeader, TextField, Typography } from '@m
 import React, { FormEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-export default function CreateGame(props) {
-
-    const {values,submit,change} = props
+const axios = require('axios').default
 
 
-
-   
-const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value} = event.target
-    console.log(value)
-    
-
+const initialFormValues = {
+    name: " ",
+    number: " "
 }
 
-const handleSubmit = (event:any) => {
-    event.preventDefault()
-    
-
+const initialErrors = {
+    name: " ",
+    number: " "
 }
+
+
+
+
+
+
+
+
+
+export default function CreateGame() {
+
+    interface FormDataType { name: string, number: string }
+    const formData: FormDataType = { name: "", number: "" }
+    const [responseBody, setResponseBody] = useState<FormDataType>(formData)
+
+    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target
+        setResponseBody({ ...responseBody, [name]: value })
+    }
+
+    const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        console.log(responseBody)
+    }
+
+
+
 
 
 
@@ -31,7 +51,7 @@ const handleSubmit = (event:any) => {
         <>
 
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmitHandler}>
                 <Card sx={{
                     border: 'solid 1px black',
                     display: 'flex',
@@ -52,17 +72,23 @@ const handleSubmit = (event:any) => {
                                 required
                                 id="name"
                                 label="Name"
+                                name='name'
+                                value={responseBody.name}
                                 defaultValue="Kevin Durant"
-                                onChange={handleChange} />
+                                onChange={inputChangeHandler} />
 
                             <TextField
                                 required
                                 id="outline-required"
                                 label="Jersey Number"
-                                defaultValue="7" />
+                                name="number"
+                                type='number'
+                                value={responseBody.number}
+                                defaultValue="7"
+                                onChange={inputChangeHandler} />
                             <Button
                                 variant="contained"
-                                onClick={handleSubmit}
+                                type='submit'
                             >Submit
                             </Button>
                         </div>
