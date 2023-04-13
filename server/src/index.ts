@@ -1,29 +1,31 @@
-import express, { Application, Request, Response } from 'express';
 import * as dotenv from 'dotenv'
-import bodyParser from 'body-parser';
-
+import express from 'express'
+import cors from 'cors'
+import helmet from 'helmet'
 
 dotenv.config()
 
 
 
 
-const app: Application = express();
+if (!process.env.PORT) {
+    process.exit(1)
+}
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const PORT: number = parseInt(process.env.PORT as string, 10)
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Healthy')
-})
+const app  = express()
 
-const PORT = process.env.PORT || 4000;
+
+
+app.use(helmet())
+app.use(cors())
+app.use(express.json())
+
+
+
+
 
 app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`)
+    console.log(`listening on ${PORT}`)
 })
-
-app.get("/help", (req,res) => {
-  res.send("Help")
-})
-
