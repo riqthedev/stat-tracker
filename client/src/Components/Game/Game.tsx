@@ -1,18 +1,12 @@
 import React, { FormEvent, useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import Home from '../Home';
-import Away from '../Away';
-import Inactive from '../Team/Inactive';
-import NotActive from '../Player/NotActive';
-import '../../index'
-import { SubOut } from '../Player/Player';
-import { DataGrid, GridColDef, GridValueGetterParams} from '@mui/x-data-grid'
+import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
 
 
 
@@ -21,7 +15,25 @@ import { DataGrid, GridColDef, GridValueGetterParams} from '@mui/x-data-grid'
 
 type Stat = "points" | "rebounds" | "steals" | "FT" | "2P" | "3P" | "Miss 3P" | "Miss 2P" | "Miss FT" | "assist" | "block" | "fouls" | "active"
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
 
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 
 
@@ -30,6 +42,44 @@ type Stat = "points" | "rebounds" | "steals" | "FT" | "2P" | "3P" | "Miss 3P" | 
 
 
 function Game() {
+
+    function createRow (
+        name: string,
+        fg: string,
+        threept: string,
+        reb: number,
+        ast: number,
+        blk: number,
+        stl: number,
+        fouls: number,
+        pts: number
+    ) {
+        return {
+            name,
+            fg,
+            threept,
+            reb,
+            ast,
+            blk,
+            stl,
+            fouls,
+            pts
+        }
+    }
+
+    const rows= [
+        createRow(
+            "Durant",
+            "4-5",
+            "2-2",
+            4,
+            3,
+            7,
+            10,
+            1,
+            20,
+        )
+    ]
 
     const createPlayer = ({ idx, players, setPlayers, userInput, team }) => {
         return {
@@ -96,139 +146,47 @@ function Game() {
     }
 
 
-    const columns: GridColDef[] = [
-        {field: 'active', headerName: "Active", width: 100},
-        {field: 'name', headerName: "Name", width: 100},
-        {field: 'fg', headerName: "FG", width: 40},
-        {field: 'threept', headerName: "3PT", width: 40},
-        {field: 'ft', headerName: "FT", width: 40},
-        {field: 'reb', headerName: "REB", width: 40},
-        {field: 'ast', headerName: "AST", width: 40},
-        {field: 'blk', headerName: "BLK", width: 40},
-        {field: 'stl', headerName: "STL", width: 40},
-        {field: 'fouls', headerName: "FOULS", width: 40},
-        {field: 'pts', headerName: "PTS", width: 40},
-        
-
-    ]
-
-    const rows = [
-        { id: 0, active: "Active", name: "Nyriq", fg: "0-0", threept: "0-0", ft: "0-0", reb: 0, ast: 0, blk: 0, stl: 0, fouls: 0, pts: 0 }
-    ]
-
-
-
-
-
-
-
-    // Game should have active arrays for home and away respectively.
-    // Player.active is initally "inactive"
-    // If  player is active render active state
-    // If (active)player is subbed out (inactive)player replaces active(player) in active Array
-    // player stats should always be visble at all times
-
-
-
-
-
-
-    // const RadioButton = ({ label, value, onChange, }) => {
-    //     return (
-    //         <label>
-    //             <input type="radio" checked={value} onChange={onChange} />
-    //             {label}
-    //         </label>
-    //     )
-    // }
-
-
-
-
-
-
-
-
-
-    // // const [players, setPlayers] = useState((new Array(0)).map((_, idx) => {
-    // //     return createPlayer({ idx, players, setPlayers, userInput, team })
-    // // }))
-
-
-
-    // // const homeScore = () => {
-    // //     let total = 0
-    // //     const player = players.map((player) => {
-    // //         if (player.team === "home") {
-    // //             total += player.points
-    // //         }
-    // //     })
-    // //     return total
-    // // }
-
-
-
-
-    // // const awayScore = () => {
-    // //     let total = 0
-    // //     const player = players.map((player) => {
-    // //         if (player.team === "away") {
-    // //             total += player.points
-    // //         }
-    // //     })
-    // //     return total
-    // // }
-
-    // ///////////////////
-    // const [teamView, setTeamView] = useState("home")
-
-
-    // const toggleView = (e: React.MouseEvent<HTMLElement>, newTeamView: string) => {
-    //     setTeamView(newTeamView)
-    //     if (teamView === "home") {
-    //         players.map((player) => {
-    //             if (player.team === "home") {
-    //                 return (
-    //                     <Home player={player} />
-    //                 )
-    //             }
-    //         })
-
-    //     }
-
-    //     if (teamView === "away") {
-    //         players.map((player) => {
-    //             if (player.team === "away") {
-    //                 return (
-    //                     <Away player={player} />
-    //                 )
-    //             }
-    //         })
-
-    //     }
-
-
-
-    // }
-
-
-    
-    // const homeActive: any[] = []
-    // const awayActive: any[] = []
-    // const inactive:  any [] = []
 
         
     return (
-        <table>
-            <div>
-                <DataGrid
-                 rows={rows}
-                 columns={columns}
-                 checkboxSelection
-                />
-            </div>
+        <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Active</StyledTableCell>
+              <StyledTableCell align="right">Name</StyledTableCell>
+              <StyledTableCell align="right">FG</StyledTableCell>
+              <StyledTableCell align="right">3PT</StyledTableCell>
+              <StyledTableCell align="right">REB</StyledTableCell>
+              <StyledTableCell align="right">AST</StyledTableCell>
+              <StyledTableCell align="right">BLK</StyledTableCell>
+              <StyledTableCell align="right">STL</StyledTableCell>
+              <StyledTableCell align="right">FOULS</StyledTableCell>
+              <StyledTableCell align="right">PTS</StyledTableCell>
 
-        </table>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell component="th" scope="row">
+                  Active
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.name}</StyledTableCell>
+                <StyledTableCell align="right">{row.fg}</StyledTableCell>
+                <StyledTableCell align="right">{row.threept}</StyledTableCell>
+                <StyledTableCell align="right">{row.reb}</StyledTableCell>
+                <StyledTableCell align="right">{row.ast}</StyledTableCell>
+                <StyledTableCell align="right">{row.blk}</StyledTableCell>
+                <StyledTableCell align="right">{row.stl}</StyledTableCell>
+                <StyledTableCell align="right">{row.fouls}</StyledTableCell>
+                <StyledTableCell align="right">{row.pts}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+  
     )
 }
 
