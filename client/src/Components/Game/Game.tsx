@@ -12,6 +12,7 @@ import Inactive from '../Team/Inactive';
 import NotActive from '../Player/NotActive';
 import '../../index'
 import { SubOut } from '../Player/Player';
+import { DataGrid, GridColDef, GridValueGetterParams} from '@mui/x-data-grid'
 
 
 
@@ -94,6 +95,26 @@ function Game() {
         }
     }
 
+
+    const columns: GridColDef[] = [
+        {field: 'active', headerName: "Active", width: 100},
+        {field: 'name', headerName: "Name", width: 100},
+        {field: 'fg', headerName: "FG", width: 40},
+        {field: 'threept', headerName: "3PT", width: 40},
+        {field: 'ft', headerName: "FT", width: 40},
+        {field: 'reb', headerName: "REB", width: 40},
+        {field: 'ast', headerName: "AST", width: 40},
+        {field: 'blk', headerName: "BLK", width: 40},
+        {field: 'stl', headerName: "STL", width: 40},
+        {field: 'fouls', headerName: "FOULS", width: 40},
+        {field: 'pts', headerName: "PTS", width: 40},
+        
+
+    ]
+
+    const rows = [
+        { id: 0, active: "Active", name: "Nyriq", fg: "0-0", threept: "0-0", ft: "0-0", reb: 0, ast: 0, blk: 0, stl: 0, fouls: 0, pts: 0 }
+    ]
 
 
 
@@ -198,57 +219,16 @@ function Game() {
 
         
     return (
-        <>
+        <table>
+            <div>
+                <DataGrid
+                 rows={rows}
+                 columns={columns}
+                 checkboxSelection
+                />
+            </div>
 
-
-
-
-
-
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Active</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Name</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FG</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FG%</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>3PT</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>3P%</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>FT</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>REB</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>AST</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>BLK</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>STL</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>Fouls</TableCell>
-                            <TableCell align="center" sx={{ border: 2, width: '40', height: '40' }}>PTS</TableCell>
-
-                        </TableRow>
-                    </TableHead>
-                    {/* <TableBody>
-                        {players.map((player) => {
-
-                           
-
-                            if (teamView === "home" ) {
-                                
-                                return (
-                                    <Home player={player} key={player.id} />
-                                )
-                            } if (teamView === "away" ) {
-                                return (
-                                    <Away player={player} key={player.id} />
-                                )
-                            } 
-                        }
-                        )}
-
-
-                    </TableBody> */}
-                </Table>
-            </TableContainer>
-
-        </>
+        </table>
     )
 }
 

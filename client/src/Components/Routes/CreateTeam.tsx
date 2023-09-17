@@ -5,7 +5,7 @@ import { Button, Card, CardContent, CardHeader, TextField, Typography } from '@m
 import React, { FormEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-const axios = require('axios').default
+
 
 
 const initialFormValues = {
@@ -28,9 +28,12 @@ const initialErrors = {
 
 export default function CreateGame() {
 
+
     interface FormDataType { name: string, number: string }
+    const initialPlayers: FormDataType[] = []
     const formData: FormDataType = { name: "", number: "" }
     const [responseBody, setResponseBody] = useState<FormDataType>(formData)
+    const [players, setPlayers] = useState(initialPlayers)
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
@@ -39,10 +42,12 @@ export default function CreateGame() {
 
     const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        
         console.log(responseBody)
+
     }
 
-
+    
 
 
 
