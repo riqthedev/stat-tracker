@@ -4,8 +4,6 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import CreateGame from './Components/Routes/CreateTeam';
-
-import SignIn from './Components/Users/user.view';
 import User from './Components/Routes/UserDash';
 import Game from './Components/Game/Game';
 import PlayerForm from './Components/forms/PlayerForm';
