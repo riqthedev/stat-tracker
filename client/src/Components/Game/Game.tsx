@@ -153,7 +153,7 @@ function Game() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Active</StyledTableCell>
+              <StyledTableCell>Status</StyledTableCell>
               <StyledTableCell align="right">Name</StyledTableCell>
               <StyledTableCell align="right">FG</StyledTableCell>
               <StyledTableCell align="right">3PT</StyledTableCell>

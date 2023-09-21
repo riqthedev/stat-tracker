@@ -8,6 +8,7 @@ import CreateGame from './Components/Routes/CreateTeam';
 import SignIn from './Components/Users/user.view';
 import User from './Components/Routes/UserDash';
 import Game from './Components/Game/Game';
+import PlayerForm from './Components/forms/PlayerForm';
 
 
 
@@ -15,12 +16,12 @@ import Game from './Components/Game/Game';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Game/>,
+    element: <PlayerForm/>,
 
     children: [
       {
-        path: "signup",
-        element: <CreateGame />
+        path: "/player",
+        element: <PlayerForm />
 
       },
     ]

@@ -6,13 +6,13 @@ import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import Game from './Components/Game/Game';
 import CreateGame from './Components/Routes/CreateTeam';
 import SignIn from './Components/Users/user.view';
-
+import PlayerForm from './Components/forms/PlayerForm';
 
 
 function App() {
     return (
       <>
-        <SignIn/>
+        <PlayerForm/>
       </>
     );
   }
