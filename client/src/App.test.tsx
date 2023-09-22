@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import CreateGame from './Components/Routes/CreateTeam';
+import CreateGame from './routes/CreateTeam';
 
 test('renders learn react link', () => {
   render(<CreateGame/>);

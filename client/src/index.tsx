@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import CreateGame from './Components/Routes/CreateTeam';
-import User from './Components/Routes/UserDash';
+import CreateGame from './routes/CreateTeam';
+import User from './routes/UserDash';
 import Game from './Components/Game/Game';
 import PlayerForm from './Components/forms/PlayerForm';
+import Root from './routes/root';
+import CreateTeam from './routes/CreateTeam';
 
 
 
@@ -14,16 +16,12 @@ import PlayerForm from './Components/forms/PlayerForm';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PlayerForm/>,
-
-    children: [
-      {
-        path: "/player",
-        element: <PlayerForm />
-
-      },
-    ]
+    element: <Root/>
   },
+  {
+    path: "/createTeam",
+    element: <CreateTeam/>
+  }
 ]);
 
 

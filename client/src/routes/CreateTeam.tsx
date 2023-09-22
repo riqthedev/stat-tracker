@@ -12,10 +12,9 @@ export default function PlayerForm() {
   
   return (
 <div>
-    <h1>Player Form</h1>
+    <h1>Create Team Form</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" placeholder="Name" {...register("Name", {required: true, maxLength: 80})} />
-      <input type="number" placeholder="Jersey" {...register("Jersey", {required: true, maxLength: 100})} />
       <input type="submit" value="Add"/>
     </form>
 </div>
